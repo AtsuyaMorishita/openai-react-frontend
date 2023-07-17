@@ -1,3 +1,4 @@
+import React from "react";
 import { useState } from "react";
 import { chat } from "./chat";
 
@@ -8,12 +9,12 @@ function App() {
   const [answer, setAnswer] = useState("");
 
   // メッセージの格納
-  const handleMessageChange = (event) => {
+  const handleMessageChange = (event: any) => {
     setMessage(event.target.value);
   };
 
   // 「質問」ボタンを押したときの処理
-  const handleSubmit = async (event) => {
+  const handleSubmit = async (event: any) => {
     console.log(message);
     event.preventDefault();
 
@@ -29,8 +30,8 @@ function App() {
       <form onSubmit={handleSubmit}>
         <label>
           <textarea
-            rows="5"
-            cols="50"
+            rows={5}
+            cols={50}
             value={message}
             onChange={handleMessageChange}
           />

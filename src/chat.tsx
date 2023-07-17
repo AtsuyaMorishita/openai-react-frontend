@@ -1,7 +1,7 @@
 import { Configuration, OpenAIApi } from "openai";
 
 const configuration = new Configuration({
-  apiKey: process.env.OPENAI_API_KEY,
+  apiKey: process.env.REACT_APP_OPENAI_API_KEY,
 });
 const openai = new OpenAIApi(configuration);
 
@@ -10,12 +10,13 @@ const openai = new OpenAIApi(configuration);
  * @param {} message 送信文
  * @returns 返答文
  */
-export const chat = async (message) => {
+export const chat = async (message: string) => {
   try {
-    const completion = await openai.createChatCompletion({
-      model: process.env.OPENAI_MODEL,
+    const completion: any = await openai.createChatCompletion({
+      model: process.env.REACT_APP_OPENAI_MODEL!,
       messages: [
         {
+          //TODO:返答の文字数を制限する
           role: "user", // "user" | "assistant" | "system"
           content: message, // string
         },
