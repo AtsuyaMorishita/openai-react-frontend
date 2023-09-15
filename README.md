@@ -1,9 +1,23 @@
-# OpenAI API ✖︎ AWS ✖️ React アプリケーション制作
+# OpenAI API ✖️ AWS ✖️ React アプリケーション制作
 
+入力フォームを 2 箇所用意して、下記のような回答を得られるようにする。
 
-## 参考
+- コードを入力したらリファクタをしてくれる
+- エラー文を入力したら、解説と対処方法を教えてくれる
 
-[React で ChatGTP API を利用した AI 連携プログラムを作成してみる](https://digipress.info/tech/sample-code-with-chatgpt-api-in-react/)
-[AWS サーバレス上に ChatGPT LINE ボットを構築する](https://www.docswell.com/s/dyoshikawa/KDEJ8V-chat-gpt-line-bot-aws-serverless#p9)  
-[[ChatGPT API][AWS サーバーレス]ChatGPT API であなたとの会話・文脈を覚えてくれる LINE ボットを作る方法まとめ](https://dev.classmethod.jp/articles/chatgpt-api-line-bot-aws-serverless/)  
-[ChatGPT API と AWS Amplify で会話履歴と文脈を読んで回答する LINE ボット を作る](https://zenn.dev/zuma_lab/articles/chatgpt-line-chatbot)
+## 仕様
+
+- AWS Lambda  
+  ChatGPT API へリクエストを送るために使用する。  
+  API Gateway と統合して、リクエストを送る。
+
+- AWS Amplify  
+  デプロイ用
+
+- AWS Cognito
+  アプリにログイン機能を実装する。  
+  また Cognito でログインしたユーザーだけが API Gateway を叩けるようにする。
+
+- AWS DynamoDB  
+  ユーザー情報、入力したテキストと回答文を保存する。  
+  ユーザーごとに自分の質問履歴を見れるようにする。

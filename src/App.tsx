@@ -1,27 +1,31 @@
 import React from "react";
 import { useState } from "react";
-import { chat } from "./chat";
+import { chatGetMessage } from "./chat";
 
 function App() {
-  // メッセージの状態管理用
+  // フォーム入力テキスト用
   const [message, setMessage] = useState("");
-  // 回答の状態管理用
+
+  // 回答文用
   const [answer, setAnswer] = useState("");
 
-  // メッセージの格納
+  /**
+   * 入力テキスト格納
+   */
   const handleMessageChange = (event: any) => {
     setMessage(event.target.value);
   };
 
-  // 「質問」ボタンを押したときの処理
+  /**
+   * 「質問」ボタンを押したときの処理
+   */
   const handleSubmit = async (event: any) => {
-    console.log(message);
     event.preventDefault();
 
-    // chat.js にメッセージを渡して API から回答を取得
-    const responseText = await chat(message);
+    // API から回答を取得
+    const responseText = await chatGetMessage(message);
 
-    // 回答の格納
+    // 回答文の格納
     setAnswer(responseText);
   };
 
