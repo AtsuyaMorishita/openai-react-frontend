@@ -1,5 +1,7 @@
 # OpenAI API ✖️ AWS ✖️ React アプリケーション制作
 
+[バックエンド側のリポジトリ](https://github.com/AtsuyaMorishita/openai-react-backend)
+
 入力フォームを 2 箇所用意して、下記のような回答を得られるようにする。
 
 - コードを入力したらリファクタをしてくれる
