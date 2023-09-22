@@ -8,16 +8,17 @@
 ## 仕様
 
 - AWS Lambda  
-  ChatGPT API へリクエストを送るために使用する。  
-  API Gateway と統合して、リクエストを送る。
+  OpenAI API を叩くために使用する。  
+  API Gateway と統合して、リクエストを送る。  
+  目的としては、仮に OpenAI の API キーが漏れた際に、外部から不正に API を叩かれる可能性があるため、一旦 Lambda を挟む。
 
 - AWS Amplify  
   デプロイ用
 
-- AWS Cognito
+- AWS Cognito  
   アプリにログイン機能を実装する。  
   また Cognito でログインしたユーザーだけが API Gateway を叩けるようにする。
 
 - AWS DynamoDB  
-  ユーザー情報、入力したテキストと回答文を保存する。  
+  質問後、ユーザー情報、入力したテキストと回答文を保存する。  
   ユーザーごとに自分の質問履歴を見れるようにする。

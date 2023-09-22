@@ -1,10 +1,10 @@
+import axios from "axios";
 import React from "react";
 import { useState } from "react";
-import { chatGetMessage } from "./chat";
 
 function App() {
   // フォーム入力テキスト用
-  const [message, setMessage] = useState("");
+  const [formMessage, setFormMessage] = useState("");
 
   // 回答文用
   const [answer, setAnswer] = useState("");
@@ -13,7 +13,7 @@ function App() {
    * 入力テキスト格納
    */
   const handleMessageChange = (event: any) => {
-    setMessage(event.target.value);
+    setFormMessage(event.target.value);
   };
 
   /**
@@ -22,11 +22,19 @@ function App() {
   const handleSubmit = async (event: any) => {
     event.preventDefault();
 
-    // API から回答を取得
-    const responseText = await chatGetMessage(message);
+    try {
+      // API から回答を取得
+      const apiUrl = process.env.REACT_APP_CHAT_GET_API;
+      const requestData = {
+        message: formMessage,
+      };
+      const responseText: any = await axios.post(apiUrl!, requestData);
 
-    // 回答文の格納
-    setAnswer(responseText);
+      // 回答文の格納
+      setAnswer(responseText.data.body.message);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -36,7 +44,7 @@ function App() {
           <textarea
             rows={5}
             cols={50}
-            value={message}
+            value={formMessage}
             onChange={handleMessageChange}
           />
         </label>
